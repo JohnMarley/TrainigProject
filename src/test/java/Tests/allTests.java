@@ -183,8 +183,8 @@ public class allTests {
 
         phoneNumber.toString();
         PhoneNumber phoneNumberClone = phoneNumber.clone();
-        //some commets
         phoneNumber.equals(phoneNumberClone);
         boolean a = phoneNumber==phoneNumberClone;
+        System.out.println(a);
     }
 }
