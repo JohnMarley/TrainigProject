@@ -5,6 +5,7 @@ import classes.ReflectionExample;
 import classes.annotationTest.AnnotationTests;
 import classes.builder.NutritionFacts;
 import classes.phoneNumber.PhoneNumber;
+import interfaces.Converter;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
@@ -186,5 +187,22 @@ public class allTests {
         phoneNumber.equals(phoneNumberClone);
         boolean a = phoneNumber==phoneNumberClone;
         System.out.println(a);
+    }
+
+    @Test
+    public void java8Test(){
+        List<Integer>collection = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            collection.add(i);
+        }
+        Integer sumOdd = collection.stream().filter(o -> o%2 !=0).reduce((s1,s2) -> s1 +s2).orElse(0);
+        System.out.println(sumOdd);
+    }
+
+    @Test
+    public void fUnterfaceTest(){
+        Converter<String, Integer> converter = Integer::valueOf;//from -> Integer.valueOf(from);
+        var a = converter.covert("123");
+        System.out.println(a.getClass().getName());
     }
 }
