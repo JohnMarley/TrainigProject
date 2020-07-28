@@ -4,4 +4,7 @@ package interfaces;
 public interface Converter<F, T> {
 
     T covert(F from);
+
+    @Override
+    String toString();
 }
