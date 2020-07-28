@@ -7,4 +7,12 @@ public interface Converter<F, T> {
 
     @Override
     String toString();
+
+    default void testMethod(){
+        System.out.println("Test");
+    }
+
+   default String toStrin(){
+        return getClass()+"Test";
+    }
 }
