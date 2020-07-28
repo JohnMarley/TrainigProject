@@ -192,11 +192,13 @@ public class allTests {
     @Test
     public void java8Test(){
         List<Integer>collection = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 40; i++) {
             collection.add(i);
         }
         Integer sumOdd = collection.stream().filter(o -> o%2 !=0).reduce((s1,s2) -> s1 +s2).orElse(0);
+        System.out.println("Hot fix");
         System.out.println(sumOdd);
+
     }
 
     @Test
