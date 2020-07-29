@@ -207,4 +207,9 @@ public class allTests {
         var a = converter.covert("123");
         System.out.println(a.getClass().getName());
     }
+
+    @Test
+    public void secondBranchTest(){
+        System.out.println("First commit to the branch");
+    }
 }
