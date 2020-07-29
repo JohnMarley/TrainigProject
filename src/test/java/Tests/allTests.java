@@ -210,6 +210,6 @@ public class allTests {
 
     @Test
     public void secondBranchTest(){
-
+        System.out.println("First commit to the branch");
     }
 }
