@@ -5,6 +5,7 @@ import static java.lang.System.out;
 public class SuperClassA {
 
     private int x = 0;
+    public int z = 0;
 
     public int getX() {
         return x;

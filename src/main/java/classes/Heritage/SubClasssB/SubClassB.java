@@ -3,6 +3,13 @@ package classes.Heritage.SubClasssB;
 import classes.AbstractClasses.Abstract;
 import classes.Heritage.PrivateClassC.PrivateClassC;
 import classes.Heritage.SuperClassA.SuperClassA;
+import org.apache.commons.lang3.NotImplementedException;
+
+import java.util.Collections;
+import java.util.Hashtable;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.lang.System.in;
 import static java.lang.System.out;
@@ -26,8 +33,13 @@ public class SubClassB extends SuperClassA {
     int superInt = 10;
 
     public int multy(int a, int b){
-        int c = super.multy(a, b);
-        return (c - a/b)+super.superInt + superInt;
+//        Collections ;
+//        List<String>;
+//        Map<String, Object> a = new LinkedHashMap<>();
+//         a = new Hashtable<>();
+//        int c = super.multy(a, b);
+//        return (c - a/b)+super.superInt + superInt;
+        return 0;
     }
 
 

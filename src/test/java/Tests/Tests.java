@@ -6,6 +6,9 @@ import com.google.gson.Gson;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import serialization.Cat;
+
+import java.util.Arrays;
 
 @RunWith(SerenityRunner.class)
 

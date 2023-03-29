@@ -1,5 +1,9 @@
 package Tests;
 
+import patterns.builder.Nutrients;
+import abstraction.animals.Tiger;
+import abstraction.food.Grass;
+import abstraction.food.Meat;
 import classes.App;
 import classes.ReflectionExample;
 import classes.annotationTest.AnnotationTests;
@@ -12,6 +16,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparingInt;
 
 public class allTests {
 
@@ -21,66 +30,6 @@ public class allTests {
                 .calories(200)
                 .fat(10)
                 .build();
-    }
-
-    @Test
-    public void arrayTest(){
-
-        int[] array = new int[10];
-//        String[] arrayS = new String[10];
-//        Object[] arrObj = new Object[10];
-//        String[] arrStr = new String[10];
-        long startFillingArray = new Date().getTime();
-        List<Integer>arraylist = new ArrayList<>();
-        for (int i = 0; i < 50000000; i++) {
-            arraylist.add(i);
-        }
-
-        long finishFillingArray = new Date().getTime();
-        long arrayResult = finishFillingArray - startFillingArray;
-
-        List<Integer>linkedList= new LinkedList<>();
-        long startLinked = new Date().getTime();
-        for (int i = 0; i < 50000000; i++) {
-            linkedList.add(i);
-        }
-        long finishList = new Date().getTime();
-        long linkedResult = finishList-startLinked;
-        System.out.println("arrayFilling: "+arrayResult);
-        System.out.println("Linkedfilling: "+linkedResult);
-
-        List<Integer>subArrayList=new ArrayList<>();
-        for (int i = 0; i <100 ; i++) {
-            subArrayList.add(i);
-        }
-        long startArrayInserting = new Date().getTime();
-        arraylist.addAll(25000000,subArrayList);
-        long endArrayInserting = new Date().getTime();
-        long resultArrayInserting = endArrayInserting-startArrayInserting;
-
-        System.out.println("ArrayInserting "+resultArrayInserting);
-
-        List<Integer>subLinkedList=new LinkedList<>();
-        for (int i = 0; i <100 ; i++) {
-            subLinkedList.add(i);
-        }
-        long startinkedInserting = new Date().getTime();
-        linkedList.addAll(25000000,subLinkedList);
-        long endLinkedInserting = new Date().getTime();
-        long resultLinkedInserting = endLinkedInserting-startinkedInserting;
-        System.out.println("LinkedInserting "+resultLinkedInserting);
-
-        long start = new Date().getTime();
-        arraylist.get(25000000);
-        long end = new Date().getTime();
-        long res = end-start;
-        System.out.println("arrayGet: "+res);
-        start = new Date().getTime();
-        linkedList.get(25000000);
-        end = new Date().getTime();
-        res = end-start;
-        System.out.println("linkedGet: "+res);
-
     }
 
     @Test
@@ -133,12 +82,12 @@ public class allTests {
 
     @Test
     public void equalsTest(){
-//        AnnotationTests annotationTests = new AnnotationTests();
-//        AnnotationTests annotationTests1 = new AnnotationTests();
-//
-//        boolean a = annotationTests.equals(annotationTests1);
-//
-//        System.out.println(a);
+        AnnotationTests annotationTests = new AnnotationTests('c', 'x');
+        AnnotationTests annotationTests1 = new AnnotationTests('x', 'c');
+
+        boolean a = annotationTests.equals(annotationTests1);
+
+        System.out.println(a);
     }
 
     @Test
@@ -212,4 +161,103 @@ public class allTests {
     public void secondBranchTest(){
         System.out.println("First commit to the branch");
     }
+
+    @Test
+    public void java11Test(){
+        var list = new ArrayList<String>();
+        for (int i = 0; i < 10; i++) {
+            list.add(String.valueOf(i));
+        }
+        var chara = Character.toString(82);
+//        var phoneNumber = new PhoneNumber("Jessica","050-52-254");
+//        var a = phoneNumber.equals(new Object());
+        list.stream().filter(s -> Integer.valueOf(s) > 4).collect(Collectors.toList());
+
+
+    }
+
+    @Test
+    public void javaTest1(){
+        List<String> list = new ArrayList<>();
+        ArrayList<String> l = new ArrayList<>();
+        list.add("a");
+        list.add("ab");
+        list.add("c");
+        Collections.sort(list, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return Integer.compare(o1.length(),o2.length());
+            }
+        });
+
+        Collections.sort(list,(o1,o2)->{
+            var a = Integer.compare(o1.length(),o2.length());
+            return a;
+        });
+
+        Collections.sort(list,comparingInt(String::length));
+
+        list.sort(Comparator.comparingInt(String::length));
+
+    }
+    @Test
+    public void abstractionTest(){
+        Tiger tiger = new Tiger();
+        Meat meat = new Meat();
+        Grass grass = new Grass();
+        tiger.eat(grass);
+    }
+
+    @Test
+    public void test(){
+        ArrayList<Object> cats = new ArrayList<>();
+        cats.add("Томас");
+        cats.add("Бегемот");
+        cats.add("Филипп Маркович");
+        cats.add("Пушок");
+
+//        for (int i = 0; i < cats.size(); i++) {
+//            if(cats.get(i).equals("Бегемот")){
+//                cats.remove(cats.get(i));
+//            }
+//        }
+        Iterator<Object> objI = cats.iterator();
+        while (objI.hasNext()){
+            Object o = objI.next();
+            if(o.equals("Бегемот")){
+                objI.remove();
+            }
+        }
+
+        System.out.println(cats.toString());
+        Logger log = Logger.getLogger(allTests.class.getName(),allTests.class.getName());
+        log.getLevel();
+
+    }
+
+    @Test
+    public void testBuilder(){
+        Nutrients nutrients = new Nutrients.Builder()
+                .setFat(3)
+                .setCarbonates(5)
+                .setProtein(4)
+                .build();
+        Nutrients nutrients1 = Nutrients.builder()
+                .setProtein(5)
+                .setSugar(10)
+                .build();
+
+        nutrients.equals(nutrients1);
+
+    }
+
+    @Test
+    public void testMap() {
+        Map<String, Integer> map = new HashMap<>();
+
+        map.merge("test", 1, Integer::sum);
+        map.merge("test", 1, Integer::sum);
+        System.out.println(map);
+    }
+
 }
