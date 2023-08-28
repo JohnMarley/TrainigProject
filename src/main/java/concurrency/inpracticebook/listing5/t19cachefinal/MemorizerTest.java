@@ -5,10 +5,10 @@ import org.junit.Test;
 
 public class MemorizerTest {
 
-    public static class TestComputable<Object,String> implements Computable<Object, java.lang.String> {
+    public static class TestComputable implements Computable<Object, String> {
 
         @Override
-        public java.lang.String compute(@NotNull java.lang.Object a) throws InterruptedException {
+        public String compute(@NotNull java.lang.Object a) throws InterruptedException {
             System.out.println("wait 3 sec and compute..");
             Thread.sleep(3000);
             System.out.println(a + " computed!");
@@ -18,7 +18,7 @@ public class MemorizerTest {
 
     @Test
     public void memorizerTest() throws InterruptedException {
-        Memorizer<Object,String> memorizer = new Memorizer<>(new MemorizerTest.TestComputable<>());
+        Memorizer<Object,String> memorizer = new Memorizer<>(new MemorizerTest.TestComputable());
         var o1 = new Object();
         var o2 = new Object();
 
