@@ -1,6 +1,5 @@
 package Tests;
 
-import patterns.builder.Nutrients;
 import abstraction.animals.Tiger;
 import abstraction.food.Grass;
 import abstraction.food.Meat;
@@ -11,12 +10,20 @@ import classes.builder.NutritionFacts;
 import classes.phoneNumber.PhoneNumber;
 import interfaces.Converter;
 import org.junit.Test;
+import patterns.builder.Nutrients;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
-import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
